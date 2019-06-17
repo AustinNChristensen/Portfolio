@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 import Header from '../components/Header';
 import { graphql, Link } from "gatsby";
-const Layout = ({data}) => {
+
+const AllProjects = ({data}) => {
     const { edges } = data.allMarkdownRemark;
     return (
         <div>
@@ -17,32 +18,30 @@ const Layout = ({data}) => {
                     </div>
                 )
             })}
-            <div>
-                <Link to={`/tags`}>All Tags</Link>
-            </div>
         </div>
     );
 };
 
 export const query = graphql`
-    query HomepageQuery {
+    query AllProjectsQuery {
         allMarkdownRemark(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/projects/**/*.md"}},
             sort: {
-                order: DESC, fields: [frontmatter___date]
-            },
-            limit: 5
-        ) {
-          edges {
-               node {
-                 frontmatter {
-                   title
-                   path
-                   date
-                   excerpt
-                 }
-               }
+              order: ASC,
+              fields: [frontmatter___date]
+            } 
+          ) {
+            edges {
+              node {
+                frontmatter {
+                  path
+                  title
+                  tags
+                  repository
+                }
+              }
+            }
           }
-        }
     }
 `;
-export default Layout;
+export default AllProjects;
