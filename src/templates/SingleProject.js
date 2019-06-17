@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Container from '../components/Container';
 import {Link, graphql } from 'gatsby';
 
 const SingleProject = ({ data, pageContext }) => {
@@ -8,8 +8,7 @@ const SingleProject = ({ data, pageContext }) => {
     const title = markdownRemark.frontmatter.title;
     const html = markdownRemark.html;
     return (
-        <div>
-            <Header />
+        <Container>
             <h1>{title}</h1>
             <div 
                 className='post' 
@@ -18,7 +17,7 @@ const SingleProject = ({ data, pageContext }) => {
             {prev && <Link to={prev.frontmatter.path}>Last Post </Link>}
             {next && <Link to={next.frontmatter.path}>Next Post </Link>}
             
-        </div>
+        </Container>
     )
 };
 

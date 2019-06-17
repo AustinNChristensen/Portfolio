@@ -1,11 +1,10 @@
 import React from "react";
-import Header from '../components/Header';
+import Container from '../components/Container';
 import { graphql, Link } from "gatsby";
 const Layout = ({data}) => {
     const { edges } = data.allMarkdownRemark;
     return (
-        <div>
-            <Header />
+        <Container>
             {edges.map(edge => {
                 const { frontmatter } = edge.node;
                 return (
@@ -13,14 +12,13 @@ const Layout = ({data}) => {
                         <Link to={frontmatter.path}>
                             {frontmatter.title}
                         </Link>
-                        
                     </div>
                 )
             })}
             <div>
                 <Link to={`/tags`}>All Tags</Link>
             </div>
-        </div>
+        </Container>
     );
 };
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Header from '../components/Header';
+import Container from '../components/Container';
 const AllTagsTemplate = ({ data, pageContext }) => {
     const { tags } = pageContext;
     return (
-        <>
-        <Header />
+        <Container>
             <ul>
                 {tags.map((tagName, index) => {
                     return (
@@ -18,7 +17,7 @@ const AllTagsTemplate = ({ data, pageContext }) => {
                 })}
             </ul>
             
-        </>
+        </Container>
     )
 };
 

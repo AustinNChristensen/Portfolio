@@ -1,12 +1,11 @@
 import React from 'react';
-import Header from '../components/Header';
+import Container from '../components/Container';
 
 const Contact = () => {
     return (
-        <div>
-            <Header />
+        <Container>
             Contact Page
-        </div>
+        </Container>
     )
 }
 

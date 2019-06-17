@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
 const TitleAndDescription = ({ data }) => {
     const { siteMetadata } = data.site;
@@ -7,15 +8,15 @@ const TitleAndDescription = ({ data }) => {
     const menuLinks = siteMetadata.menuLinks;
     return (
         <>
-        <nav>
+        <StyledNav>
             {menuLinks.map((link, index) => {
                 return (
-                    <li key={index}>
+                    <StyledItem key={index}>
                         <Link to={link.link}>{link.name}</Link>
-                    </li>
+                    </StyledItem>
                 )
             })}
-        </nav>
+        </StyledNav>
             <h2>{title}</h2>
             <p>{description}</p>
         </>
@@ -43,4 +44,21 @@ const Header = () => {
     )
 };
 
+const StyledNav = styled.nav`
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-top: 20px;
+`
+
+const StyledItem = styled.li`
+    &:not(:first-child){
+        margin-left: 20px;
+    }
+    color: #C0D9ED;
+    & > a {
+        color: #C0D9ED;
+    }
+
+`
 export default Header;

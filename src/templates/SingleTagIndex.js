@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Header from '../components/Header';
+import Container from '../components/Container';
 const SingleTagTemplate = ({pageContext }) => {
     const { posts, tagName } = pageContext;
     return (
-        <div>
-            <Header />
+        <Container>
             Posts about {`${tagName}`}
             <div>
                 <ul>
@@ -20,8 +19,7 @@ const SingleTagTemplate = ({pageContext }) => {
                     })}
                 </ul>
             </div>
-            
-        </div>
+        </Container>
     )
 };
 
