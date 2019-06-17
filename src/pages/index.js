@@ -27,6 +27,7 @@ const Layout = ({data}) => {
 export const query = graphql`
     query HomepageQuery {
         allMarkdownRemark(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/blogs/**/*.md"}},
             sort: {
                 order: DESC, fields: [frontmatter___date]
             },
