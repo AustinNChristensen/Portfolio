@@ -1,23 +1,26 @@
 import React from "react";
 import Container from '../components/Container';
 import { graphql, Link } from "gatsby";
+import styled from 'styled-components';
 const Layout = ({data}) => {
     const { edges } = data.allMarkdownRemark;
     return (
         <Container>
+            <HomePageWrapper>
             {edges.map(edge => {
                 const { frontmatter } = edge.node;
                 return (
-                    <div key={frontmatter.path}>
+                    <ContentItem key={frontmatter.path}>
                         <Link to={frontmatter.path}>
                             {frontmatter.title}
                         </Link>
-                    </div>
+                    </ContentItem>
                 )
             })}
-            <div>
-                <Link to={`/tags`}>All Tags</Link>
-            </div>
+            <TagsLink>
+                <Link to={`/tags`}>Or, filter by tag!</Link>
+            </TagsLink>
+            </HomePageWrapper>
         </Container>
     );
 };
@@ -45,3 +48,22 @@ export const query = graphql`
     }
 `;
 export default Layout;
+
+const HomePageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+        color: ${props => props.theme.text};
+    }
+`;
+
+const ContentItem = styled.span`
+    &:not(:first-child){
+        margin-top: 20px;
+    }
+`;
+
+const TagsLink = styled.span`
+    margin-top: 20px;
+`;

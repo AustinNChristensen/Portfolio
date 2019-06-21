@@ -8,13 +8,13 @@ const AllProjects = ({data}) => {
         <Container>
             {edges.map(edge => {
                 const { frontmatter } = edge.node;
-                return (
-                    <div key={frontmatter.path}>
-                        <Link to={frontmatter.path}>
-                            {frontmatter.title}
-                        </Link>
+                return ( <p>Coming soon!</p>
+                    // <div key={frontmatter.path}>
+                    //     <Link to={frontmatter.path}>
+                    //         {frontmatter.title}
+                    //     </Link>
                         
-                    </div>
+                    // </div>
                 )
             })}
         </Container>

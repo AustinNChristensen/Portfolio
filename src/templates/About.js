@@ -3,7 +3,7 @@ import Container from '../components/Container';
 const About = () => {
     return (
         <Container>
-            About Page
+            About Page is coming soon!
         </Container>
     )
 }
