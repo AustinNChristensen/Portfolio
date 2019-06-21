@@ -72,8 +72,6 @@ exports.createPages = ({ graphql, actions }) => {
   createStaticPages(createPage);
   const blogPostTemplate = path.resolve(`src/templates/blogPost.js`);
   const SingleProjectTemplate = path.resolve(`src/templates/SingleProject.js`);
-   // projects
-    // indv project
   
   // blog - Blog Home?
 
