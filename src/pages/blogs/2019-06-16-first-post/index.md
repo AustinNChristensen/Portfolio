@@ -50,12 +50,12 @@ So, on the regular shallow(), we are entering the top level of our HOC, but by d
 
 This will all make much more sense once we implement the HOC.
 
-[The documentation for dive can be found here](https://airbnb.io/enzyme/docs/api/ShallowWrapper/dive.html)
+The documentation for dive can be found [here](https://airbnb.io/enzyme/docs/api/ShallowWrapper/dive.html)
 
 ### The Rest of the Tests
 Now that we're past .dive(), the expect() statement looks odd too. From what I've found this is the only way to test a functional HOC that returns a function. There will be a child element with prop to='/' and name of Redirect that should look familiar because it's just another way of describing a component:
 
-```react
+```js
 <Redirect to='/' />
 ```
 
@@ -65,7 +65,7 @@ Writing this test 'forces' us to write a decent amount of code in order to get t
 
 Let's start with writing the skeleton of the function('s):
 
-```react
+```js
 const withAuthentication = (Component) => {
     const wrapped = ({ isAuthenticated, ...rest }) => (
         isAuthenticated ? null: <Redirect to='/login' />
@@ -75,7 +75,7 @@ const withAuthentication = (Component) => {
 ```
 Once we have a skeleton, we can add all of the Redux State Management:
 
-```react
+```js
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated
 });
@@ -92,7 +92,7 @@ While compose isn't entirely necessary in this situation, once you begin adding 
 ### Dispatch
 Because this HOC doesn't have a use for dispatch, it's easiest to just not implement the function, pass null in its place to the connect() function and then handle not passing it down within your HOC's prop spread operator.
 
-```react
+```js
 // By naming dispatch here, we're removing it ...rest,
 // which will prevent it from being passed down to
 // a component once we implement that feature
@@ -105,7 +105,7 @@ At this point, our test should pass.
 ## Writing the Second Test
 Our second test is going to look a lot like the first, save for a couple of lines and an extra .dive()
 
-```react
+```js
 test('displays provided Component when isAuthenticated is true', () => {
     const Component = () => {
         return <h1>test values</h1>;
@@ -125,13 +125,13 @@ The extra .dive() is necessary here because not only do we have to get into the 
 ## Making the Second Test Pass
 Making this test pass is pretty easy with what we have already, as we just need to update our ternary statement to look like this:
 
-```react
+```js
 isAuthenticated ? <Component {...rest} /> : <Redirect to='/login' />
 ```
 
 ## Adding PropTypes
 The last step to properly testing our component is to add PropTypes to the functions like so:
-```react
+```js
 const withAuthentication = (Component) => {
     const wrapped = ({ isAuthenticated, dispatch, ...rest }) => (
         isAuthenticated ? <Component {...rest} /> : <Redirect to='/login' />
@@ -153,7 +153,7 @@ withAuthentication.propTypes = {
 In the end, our withAuthentication.test.js file will look like this:
 *note:* I've added a describe statement to wrap the tests, and moved the mockStore up.
 
-```react
+```js
 // withAuthentication.test.js
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -197,7 +197,7 @@ describe('withAuthentication', () => {
 
 and our final component will look like this:
 
-```react
+```js
 // withAuthentication.js
 import React from 'react';
 import { Redirect } from 'react-router-dom';

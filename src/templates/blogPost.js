@@ -12,9 +12,9 @@ const Template = ({ data, pageContext }) => {
     const html = markdownRemark.html;
     return (
         <Container>
+            <BlogTitle>{title}</BlogTitle>
             <BlogPostWrapper>
-            <h1>{title}</h1>
-            <div 
+            <BlogPost 
                 className='post' 
                 dangerouslySetInnerHTML={{__html: html}}
             />
@@ -41,10 +41,34 @@ export const query = graphql`
 `;
 
 const BlogPostWrapper = styled.article`
-    background-color: #31515E;
-    margin: 0 5%;
-    padding: 0 5%;
+    background-color: ${props => props.theme.thirdAccent};
+    margin: 20px 5%;
+    padding: 20px 5%;
     margin-bottom: 20px;
-    box-shadow: -1px 2px 7px 4px rgba(122,132,128,1);
+    border-radius: 10   px;
+`
+const BlogTitle = styled.h1`
+    color: ${props => props.theme.brandColor};
+    text-align: center;
+`;
+
+const BlogPost = styled.div`
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a {
+        color: ${props => props.theme.brandColor};
+    }
+    p,
+    ol,
+    ul,
+    a {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
 `
 export default Template;

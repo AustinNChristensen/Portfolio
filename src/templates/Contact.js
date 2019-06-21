@@ -4,7 +4,7 @@ import Container from '../components/Container';
 const Contact = () => {
     return (
         <Container>
-            Contact Page
+            Contact Page is coming soon!
         </Container>
     )
 }

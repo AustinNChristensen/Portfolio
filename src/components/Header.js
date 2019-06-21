@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
-const TitleAndDescription = ({ data }) => {
+const TitleAndDescription = ({ data, changeMode, mode }) => {
     const { siteMetadata } = data.site;
     const title = siteMetadata.title;
     const description = siteMetadata.description;
@@ -17,12 +17,12 @@ const TitleAndDescription = ({ data }) => {
                 )
             })}
         </StyledNav>
-            <h2>{title}</h2>
-            <p>{description}</p>
+            <SiteTitle>{title}</SiteTitle>
+            {/* <p>{description}</p> */}
         </>
     )
 }
-const Header = () => {
+const Header = ({ changeMode, mode }) => {
     return (
         <StaticQuery
             query={graphql`
@@ -39,25 +39,26 @@ const Header = () => {
                 } 
             }
             `}
-            render={data => <TitleAndDescription data={data} />}
+            render={data => <TitleAndDescription mode={mode} changeMode={changeMode} data={data} />}
         />
     )
 };
-
 const StyledNav = styled.nav`
     display: flex;
     flex-direction: row;
     list-style-type: none;
     margin-top: 20px;
+    color: ${props => props.theme.text};
 `
-
+const SiteTitle = styled.h2`
+    color: ${props => props.theme.brandColor};
+`;
 const StyledItem = styled.li`
     &:not(:first-child){
         margin-left: 20px;
     }
-    color: #C0D9ED;
     & > a {
-        color: #C0D9ED;
+        color: ${props => props.theme.text};
     }
 
 `

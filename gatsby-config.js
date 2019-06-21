@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Austin N. Christensen - Blog",
+    title: "Austin N. Christensen",
     description: "This is my blog.",
     menuLinks: [
       {
@@ -25,14 +25,15 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [{
-          resolve: `gatsby-remark-prismjs`,
-          options: {
-            classPrefix: "language-",
-            inlineCodeMarker: null,
-            aliases: {},
-            showLineNumbers: false,
-            noInlineHighlight: false,
+        plugins: [
+          {
+            resolve: `gatsby-remark-highlights`,
+            options: {
+              additionalLangs: [`language-react`],
+              scopePrefix: 'syntax--',
+              codeWrap: {
+                className: 'midnight'
+              }
           },
         }],
       },
