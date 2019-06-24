@@ -3,7 +3,8 @@ const nepal = '#83A2B9';
 const spray = '#70D9F0';
 const juniper = '#6F8D96';
 const eastBay = '#3A4B6F';
-const something = '#2b354b';
+const darkAccent = '#2b354b';
+const hint = '#beaeae';
 export const Themes = {
     light: {
         background: white,
@@ -11,7 +12,8 @@ export const Themes = {
         mainAccent: juniper,
         brandColor: spray,
         secondaryAccent: nepal,
-        thirdAccent: juniper
+        thirdAccent: juniper,
+        hint
     },
     dark: {
         background: eastBay,
@@ -19,6 +21,7 @@ export const Themes = {
         mainAccent: nepal,
         brandColor: spray,
         secondaryAccent: juniper,
-        thirdAccent: something
+        thirdAccent: darkAccent,
+        hint
     }
 };
