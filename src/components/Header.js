@@ -17,7 +17,7 @@ const TitleAndDescription = ({ data, changeMode, mode }) => {
                 )
             })}
         </StyledNav>
-            <SiteTitle>{title}</SiteTitle>
+            {/* <SiteTitle>{title}</SiteTitle> */}
             {/* <p>{description}</p> */}
         </>
     )
@@ -48,6 +48,7 @@ const StyledNav = styled.nav`
     flex-direction: row;
     list-style-type: none;
     margin-top: 20px;
+    margin-bottom: 20px;
     color: ${props => props.theme.text};
 `
 const SiteTitle = styled.h2`
