@@ -15,17 +15,20 @@ const Layout = ({data}) => {
                 const { frontmatter, timeToRead } = edge.node;
                 return (
                     <PostCard key={frontmatter.path}>
-                        <FlexLink to={frontmatter.path}>
+                        <CardFront>
                             <DateString>{getPrettyDate(frontmatter.date)}</DateString>
-                                <PostTitle>{frontmatter.title}</PostTitle>
-                            <Excerpt>{`${frontmatter.excerpt}`}</Excerpt>
+                            <PostTitle>{frontmatter.title}</PostTitle>
                             <TimeToRead>{`${timeToRead} min to read`}</TimeToRead>
-                        </FlexLink>
+                        </CardFront>
+                        <CardBack>
+                            <Excerpt>{`${frontmatter.excerpt}`}</Excerpt>
+                            <ColorLink to={frontmatter.path}>Read More</ColorLink>
+                        </CardBack>
                     </PostCard>
                 )
             })}
             <TagsLink>
-                <Link to={`/tags`}>Or, filter by tag!</Link>
+                <ColorLink to={`/tags`}>Or, filter by tag!</ColorLink>
             </TagsLink>
             </HomePageWrapper>
         </Container>
@@ -57,43 +60,37 @@ export const query = graphql`
 `;
 export default Layout;
 
-const FlexLink = styled(Link)`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-`;
-
-const HomePageWrapper = styled.div`
+const CardFront = styled.div`
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden
+    box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
     display: flex;
     flex-direction: column;
     align-items: center;
-    a {
-        color: ${props => props.theme.text};
-    }
 `;
 
-const PostTitle = styled.h2`
-    color: ${props => props.theme.background};
-    font-weight: 700;
-    font-size: 1.3em;
-    text-decoration: none;
-`;
-
-const TimeToRead = styled.p`
-    color: ${props => props.theme.hint};
-    align-self: flex-end;
-`;
-const DateString = styled.p`
-    color: ${props => props.theme.brandColor};
-    align-self: flex-end;
-`;
-
-const Excerpt = styled.p`
-    color: ${props => props.theme.thirdAccent};
-`;
-
-const TagsLink = styled.span`
-    margin-top: 20px;
+const CardBack = styled.div`
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden
+    box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotateY(180deg);
 `;
 
 const PostCard = styled.div`
@@ -102,9 +99,58 @@ const PostCard = styled.div`
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                 0 3px 1px -2px rgba(0, 0, 0, 0.2), 
                 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    width: 50%;
-    height: 100%;
-    padding: 15px 20px;
+    width: 250px;
+    height: 200px;
+    padding: 15px 35px;
     line-height: 1.5;
+    perspective: 150rem;
+    position: relative
+    &:hover ${CardFront} {
+        transform: rotateY(-180deg);
+    }
+
+    &:hover ${CardBack} {
+        transform: rotateY(0);
+    }
 }
+`;
+
+const PostTitle = styled.h2`
+    color: ${props => props.theme.background};
+    font-weight: 700;
+    font-size: 1.3em;
+    text-decoration: none;
+    text-align: center;
+`;
+
+const HomePageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const TimeToRead = styled.p`
+    color: ${props => props.theme.brandColor};
+    align-self: flex-end;
+    margin-right: 10px;
+`;
+const DateString = styled.p`
+    color: ${props => props.theme.brandColor};
+    align-self: flex-end;
+    margin-right: 10px;
+`;
+
+const Excerpt = styled.p`
+    color: ${props => props.theme.background};
+    margin-left: 10px;
+`;
+
+const ColorLink = styled(Link)`
+    color: ${props => props.theme.brandColor};
+    align-self: flex-end;
+    margin-right: 10px;
+`;
+
+const TagsLink = styled.span`
+    margin-top: 20px;
 `;
