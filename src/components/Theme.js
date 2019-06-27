@@ -1,6 +1,7 @@
 const white = '#F7F5F5';
 const nepal = '#83A2B9';
-const spray = '#70bff0';
+const spray = '#70D9F0';
+const darkSpray = '#70acf0';
 const juniper = '#6F8D96';
 const eastBay = '#3A4B6F';
 const darkAccent = '#2b354b';
@@ -19,7 +20,7 @@ export const Themes = {
         background: eastBay,
         text: white,
         mainAccent: nepal,
-        brandColor: spray,
+        brandColor: darkSpray,
         secondaryAccent: juniper,
         thirdAccent: darkAccent,
         hint

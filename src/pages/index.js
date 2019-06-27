@@ -20,7 +20,8 @@ const Layout = ({data}) => {
                             <DateString>{getPrettyDate(frontmatter.date)}</DateString>
                             <PostTitle>{frontmatter.title}</PostTitle>
                             <PostTags>{frontmatter.tags.map((tag, idx) => {
-                               return (idx === 0 ? <Tag>{`${tag}`}</Tag> : <Tag>{`, ${tag}`}</Tag> )
+                            //    return (idx === 0 ? <Tag>{`${tag}`}</Tag> : <Tag>{`, ${tag}`}</Tag> )
+                               return <Tag>{`${tag} `}</Tag>
                             })}</PostTags>
                         </CardFront>
                         <CardBack>
@@ -84,15 +85,25 @@ const CardFront = styled.div`
     padding-top: 10px;
 `;
 
-const PostTags = styled.p`
+const PostTags = styled.div`
     color: ${props => props.theme.brandColor};
     position: absolute;
     bottom: 25px;
-    word-spacing: 5px;
+    // word-spacing: 5px;
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    flex-wrap: wrap;
 `;
 
-const Tag = styled.span`
-    // margin: 0 5px;
+const Tag = styled.p`
+    background: ${props => props.theme.brandColor};
+    color: ${props => props.theme.text};
+    padding: 2px 4px;
+    border-radius: 5px;
+    text-align: center;
+    width: auto;
+    margin: 3px 5px;
 `;
 
 const CardBack = styled.div`
@@ -192,6 +203,7 @@ const ReadMoreLink = styled(Link)`
 const ColoredLink = styled(Link)`
     color: ${props => props.theme.brandColor};
     background: ${props => props.theme.background};
+    padding: 5px;
 `;
 
 const TagsLink = styled.span`
