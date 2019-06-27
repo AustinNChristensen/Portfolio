@@ -2,6 +2,7 @@ import React from "react";
 import Container from '../components/Container';
 import { graphql, Link } from "gatsby";
 import styled from 'styled-components';
+import TimerIcon from '../icons/timer.svg';
 import { getPrettyDate } from '../utils';
 
 const Layout = ({data}) => {
@@ -25,15 +26,15 @@ const Layout = ({data}) => {
                         <CardBack>
                             <Excerpt>{`"${frontmatter.excerpt}"`}</Excerpt>
                             <Row>
-                                <TimeToRead>{`${timeToRead} min to read`}</TimeToRead>
-                                <ColorLink to={frontmatter.path}>Read More</ColorLink>
+                                <TimeToRead><img src={TimerIcon} alt='timer' />{`${timeToRead} min to read`}</TimeToRead>
+                                <ReadMoreLink to={frontmatter.path}>Read More</ReadMoreLink>
                             </Row>
                         </CardBack>
                     </PostCard>
                 )
             })}
             <TagsLink>
-                <ColorLink to={`/tags`}>Or, filter by tag!</ColorLink>
+                <ColoredLink to={`/tags`}>Or, filter by tag!</ColoredLink>
             </TagsLink>
             </HomePageWrapper>
         </Container>
@@ -160,6 +161,12 @@ const TimeToRead = styled.p`
     position: absolute;
     left: 20px;
     bottom: 10px;
+    & > img {
+        height: 15px;
+        width: auto;
+        margin-right: 3px;
+        color: ${props => props.theme.brandColor};
+    }
 `;
 const DateString = styled.p`
     color: ${props => props.theme.brandColor};
@@ -175,11 +182,16 @@ const Excerpt = styled.span`
     margin: 0;
 `;
 
-const ColorLink = styled(Link)`
+const ReadMoreLink = styled(Link)`
     color: ${props => props.theme.brandColor};
     position: absolute;
     right: 20px;
     bottom: 10px;
+`;
+
+const ColoredLink = styled(Link)`
+    color: ${props => props.theme.brandColor};
+    background: ${props => props.theme.background};
 `;
 
 const TagsLink = styled.span`
