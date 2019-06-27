@@ -50,6 +50,8 @@ const BlogPostWrapper = styled.article`
 const BlogTitle = styled.h1`
     color: ${props => props.theme.brandColor};
     text-align: center;
+    background: ${props => props.theme.background};
+    padding: 13px;
 `;
 
 const BlogPost = styled.div`

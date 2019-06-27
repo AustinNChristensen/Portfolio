@@ -44,6 +44,8 @@ const Header = ({ changeMode, mode }) => {
     )
 };
 const StyledNav = styled.nav`
+    background: ${props => props.theme.background};
+    padding: 5px 0;
     display: flex;
     flex-direction: row;
     list-style-type: none;

@@ -18,11 +18,16 @@ const Layout = ({data}) => {
                         <CardFront>
                             <DateString>{getPrettyDate(frontmatter.date)}</DateString>
                             <PostTitle>{frontmatter.title}</PostTitle>
-                            <TimeToRead>{`${timeToRead} min to read`}</TimeToRead>
+                            <PostTags>{frontmatter.tags.map((tag, idx) => {
+                               return (idx === 0 ? <Tag>{`${tag}`}</Tag> : <Tag>{`, ${tag}`}</Tag> )
+                            })}</PostTags>
                         </CardFront>
                         <CardBack>
-                            <Excerpt>{`${frontmatter.excerpt}`}</Excerpt>
-                            <ColorLink to={frontmatter.path}>Read More</ColorLink>
+                            <Excerpt>{`"${frontmatter.excerpt}"`}</Excerpt>
+                            <Row>
+                                <TimeToRead>{`${timeToRead} min to read`}</TimeToRead>
+                                <ColorLink to={frontmatter.path}>Read More</ColorLink>
+                            </Row>
                         </CardBack>
                     </PostCard>
                 )
@@ -51,6 +56,7 @@ export const query = graphql`
                    path
                    date
                    excerpt
+                   tags
                  }
                  timeToRead
                }
@@ -74,6 +80,18 @@ const CardFront = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 10px;
+`;
+
+const PostTags = styled.p`
+    color: ${props => props.theme.brandColor};
+    position: absolute;
+    bottom: 25px;
+    word-spacing: 5px;
+`;
+
+const Tag = styled.span`
+    // margin: 0 5px;
 `;
 
 const CardBack = styled.div`
@@ -93,6 +111,12 @@ const CardBack = styled.div`
     transform: rotateY(180deg);
 `;
 
+const Row = styled.span`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+`;
 const PostCard = styled.div`
     background-color: ${props => props.theme.text};
     border-radius: 6px;
@@ -121,6 +145,7 @@ const PostTitle = styled.h2`
     font-size: 1.3em;
     text-decoration: none;
     text-align: center;
+    margin-top: 20px;
 `;
 
 const HomePageWrapper = styled.div`
@@ -131,8 +156,10 @@ const HomePageWrapper = styled.div`
 
 const TimeToRead = styled.p`
     color: ${props => props.theme.brandColor};
-    align-self: flex-end;
-    margin-right: 10px;
+    align-self: flex-start;
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
 `;
 const DateString = styled.p`
     color: ${props => props.theme.brandColor};
@@ -140,15 +167,19 @@ const DateString = styled.p`
     margin-right: 10px;
 `;
 
-const Excerpt = styled.p`
+const Excerpt = styled.span`
     color: ${props => props.theme.background};
-    margin-left: 10px;
+    padding: 20px 20px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin: 0;
 `;
 
 const ColorLink = styled(Link)`
     color: ${props => props.theme.brandColor};
-    align-self: flex-end;
-    margin-right: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
 `;
 
 const TagsLink = styled.span`

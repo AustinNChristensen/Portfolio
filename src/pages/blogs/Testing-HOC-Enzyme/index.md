@@ -3,7 +3,7 @@ path: "/test-react-hoc"
 date: "2019-06-16"
 title: "Testing React Higher Order Components with Enzyme (plus Redux)"
 tags: ["react", "redux", "tdd", "hoc", "javascript", "enzyme"]
-excerpt: "How to TDD React HOC using Enzyme"
+excerpt: "When practicing proper Test Driven Development, it can be a major roadblock to realize that you don't know how to test code that you need to write. I ran into this problem myself and scoured Google..."
 ---
 When practicing proper Test Driven Development, it can be a major roadblock to realize that you don't know how to test code that you need to write. I ran into this problem myself and scoured Google and couldn't find any resources at all on the topic, so I decided to share what I learned on the way.
 
