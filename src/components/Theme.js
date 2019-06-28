@@ -11,7 +11,8 @@ export const Themes = {
         background: white,
         text: eastBay,
         mainAccent: juniper,
-        brandColor: spray,
+        brandColor: darkSpray,
+        contrastBrandColor: spray,
         secondaryAccent: nepal,
         thirdAccent: juniper,
         hint
@@ -20,7 +21,8 @@ export const Themes = {
         background: eastBay,
         text: white,
         mainAccent: nepal,
-        brandColor: darkSpray,
+        brandColor: spray,
+        contrastBrandColor: darkSpray,
         secondaryAccent: juniper,
         thirdAccent: darkAccent,
         hint

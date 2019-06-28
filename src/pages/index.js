@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { ThemeConsumer } from 'styled-components';
 import Container from '../components/Container';
 import { graphql, Link } from "gatsby";
 import styled from 'styled-components';
-import TimerIcon from '../icons/timer.svg';
+import DarkTimerIcon from '../icons/dark-timer.svg';
+import LightTimerIcon from '../icons/light-timer.svg';
+import icon from '../icons/light-timer.svg';
 import { getPrettyDate } from '../utils';
 
-const Layout = ({data}) => {
-    const { edges } = data.allMarkdownRemark;
-    console.log(data);
+const Layout = ({ data, theme }) => {
+    // console.log(ThemeContext, ThemeConsumer);
+    // let icon = DarkTimerIcon;
+    // if (themeContext === 'dark'){
+    //     icon = DarkTimerIcon;
+    // } else {
+    //     icon = LightTimerIcon;
+    // }
 
+    const { edges } = data.allMarkdownRemark;
     return (
         <Container>
             <HomePageWrapper>
@@ -20,14 +30,13 @@ const Layout = ({data}) => {
                             <DateString>{getPrettyDate(frontmatter.date)}</DateString>
                             <PostTitle>{frontmatter.title}</PostTitle>
                             <PostTags>{frontmatter.tags.map((tag, idx) => {
-                            //    return (idx === 0 ? <Tag>{`${tag}`}</Tag> : <Tag>{`, ${tag}`}</Tag> )
-                               return <Tag>{`${tag} `}</Tag>
+                               return <Tag key={tag}>{`${tag} `}</Tag>
                             })}</PostTags>
                         </CardFront>
                         <CardBack>
                             <Excerpt>{`"${frontmatter.excerpt}"`}</Excerpt>
                             <Row>
-                                <TimeToRead><img src={TimerIcon} alt='timer' />{`${timeToRead} min to read`}</TimeToRead>
+                                <TimeToRead><img src={icon} alt='timer' />{`${timeToRead} min to read`}</TimeToRead>
                                 <ReadMoreLink to={frontmatter.path}>Read More</ReadMoreLink>
                             </Row>
                         </CardBack>
@@ -97,7 +106,7 @@ const PostTags = styled.div`
 `;
 
 const Tag = styled.p`
-    background: ${props => props.theme.brandColor};
+    background: ${props => props.theme.contrastBrandColor};
     color: ${props => props.theme.text};
     padding: 2px 4px;
     border-radius: 5px;
@@ -167,7 +176,7 @@ const HomePageWrapper = styled.div`
 `;
 
 const TimeToRead = styled.p`
-    color: ${props => props.theme.brandColor};
+    color: ${props => props.theme.contrastBrandColor};
     align-self: flex-start;
     position: absolute;
     left: 20px;
@@ -176,11 +185,10 @@ const TimeToRead = styled.p`
         height: 15px;
         width: auto;
         margin-right: 3px;
-        color: ${props => props.theme.brandColor};
     }
 `;
 const DateString = styled.p`
-    color: ${props => props.theme.brandColor};
+    color: ${props => props.theme.contrastBrandColor};
     align-self: flex-end;
     margin-right: 10px;
 `;
@@ -194,14 +202,14 @@ const Excerpt = styled.span`
 `;
 
 const ReadMoreLink = styled(Link)`
-    color: ${props => props.theme.brandColor};
+    color: ${props => props.theme.contrastBrandColor};
     position: absolute;
     right: 20px;
     bottom: 10px;
 `;
 
 const ColoredLink = styled(Link)`
-    color: ${props => props.theme.brandColor};
+    color: ${props => props.theme.contrastBrandColor};
     background: ${props => props.theme.background};
     padding: 5px;
 `;

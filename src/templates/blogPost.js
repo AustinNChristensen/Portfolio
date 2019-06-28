@@ -2,8 +2,9 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import Container from '../components/Container';
+import { ContentFooter } from '../components/ContentFooter';
 import 'prismjs/themes/prism-tomorrow.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 const Template = ({ data, pageContext }) => {
     const {next, prev} = pageContext;
@@ -21,6 +22,7 @@ const Template = ({ data, pageContext }) => {
             </BlogPostWrapper>
             {prev && <Link to={prev.frontmatter.path}>Last Post </Link>}
             {next && <Link to={next.frontmatter.path}>Next Post </Link>}
+            <ContentFooter/>
         </Container>
     )
 };
@@ -45,7 +47,7 @@ const BlogPostWrapper = styled.article`
     margin: 20px 5%;
     padding: 20px 5%;
     margin-bottom: 20px;
-    border-radius: 10   px;
+    border-radius: 10px;
 `
 const BlogTitle = styled.h1`
     color: ${props => props.theme.brandColor};

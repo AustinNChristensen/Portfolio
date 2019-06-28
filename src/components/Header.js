@@ -3,13 +3,17 @@ import styled from 'styled-components';
 import { StaticQuery, graphql, Link } from 'gatsby';
 const TitleAndDescription = ({ data, changeMode, mode }) => {
     const { siteMetadata } = data.site;
-    const title = siteMetadata.title;
-    const description = siteMetadata.description;
+    // const title = siteMetadata.title;
+    // const description = siteMetadata.description;
     const menuLinks = siteMetadata.menuLinks;
     return (
         <>
         <StyledNav>
             {menuLinks.map((link, index) => {
+                if(link.name === 'Projects'){
+                    return null;
+                }
+                {/* console.log(link) */}
                 return (
                     <StyledItem key={index}>
                         <Link to={link.link}>{link.name}</Link>

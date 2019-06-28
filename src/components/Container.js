@@ -5,6 +5,7 @@ import { Footer } from './Footer';
 import { Themes } from './Theme';
 
 const Container = ({children}) => {
+    const Theme = React.createContext('dark');
     const [mode, setMode] = useState('dark');
     const switchTheme = () => {
         if(mode === 'light') {
@@ -16,12 +17,14 @@ const Container = ({children}) => {
     const theme = mode === 'light' ? Themes.light : Themes.dark;
     return (
         <ThemeProvider theme={theme}>
-            <Wrapper>
-                <GlobalStyle />
-                <Header />
-                {children}
-                <Footer changeMode={() => switchTheme()} mode={mode} />
-            </Wrapper>
+            <Theme.Provider theme={theme}>
+                <Wrapper>
+                    <GlobalStyle />
+                    <Header />
+                    {children}
+                    <Footer changeMode={() => switchTheme()} mode={mode} />
+                </Wrapper>
+            </Theme.Provider>
         </ThemeProvider>
     )
 }

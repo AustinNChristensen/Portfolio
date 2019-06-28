@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import styled from 'styled-components';
 
 export const Footer = ({ mode, changeMode }) => {
@@ -6,6 +6,7 @@ export const Footer = ({ mode, changeMode }) => {
 }
 
 const FooterWrapper = styled.div`
-    position: relative;
-    margin: 20px 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 `;

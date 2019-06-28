@@ -43,7 +43,7 @@ const createTagPages = (createPage, posts) => {
 const createStaticPages = (createPage) => {
   const About = path.resolve(`src/templates/About.js`);
   const Contact = path.resolve(`src/templates/Contact.js`);
-  const AllProjects = path.resolve(`src/templates/AllProjects.js`);
+  // const AllProjects = path.resolve(`src/templates/AllProjects.js`);
   const FourOhFour = path.resolve(`src/templates/404.js`);
   
 
@@ -57,10 +57,10 @@ const createStaticPages = (createPage) => {
     component: Contact
   });
 
-  createPage({
-    path: `/projects`,
-    component: AllProjects
-  })
+  // createPage({
+  //   path: `/projects`,
+  //   component: AllProjects
+  // });
 
   createPage({
     path: `/404.html`,

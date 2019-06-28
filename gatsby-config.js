@@ -14,10 +14,6 @@ module.exports = {
       {
         "name": "Projects",
         "link": "/projects"
-      },
-      {
-        "name": "Contact",
-        "link": "/contact"
       }
     ]
   },
@@ -34,6 +30,7 @@ module.exports = {
         name: `pages`,
         path: `${__dirname}/src/pages`
       }
-    }
+    },
+    `gatsby-plugin-styled-components`,
   ]
-}
+};
