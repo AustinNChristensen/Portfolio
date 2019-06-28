@@ -86,7 +86,7 @@ const CardFront = styled.div`
     height: 100%;
     backface-visibility: hidden;
     border-radius: 3px;
-    overflow: hidden
+    overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
     display: flex;
     flex-direction: column;
@@ -124,7 +124,7 @@ const CardBack = styled.div`
     height: 100%;
     backface-visibility: hidden;
     border-radius: 3px;
-    overflow: hidden
+    overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
     display: flex;
     flex-direction: column;
@@ -149,7 +149,7 @@ const PostCard = styled.div`
     padding: 15px 35px;
     line-height: 1.5;
     perspective: 150rem;
-    position: relative
+    position: relative;
     &:hover ${CardFront} {
         transform: rotateY(-180deg);
     }
