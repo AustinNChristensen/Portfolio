@@ -98,7 +98,6 @@ const PostTags = styled.div`
     color: ${props => props.theme.brandColor};
     position: absolute;
     bottom: 25px;
-    // word-spacing: 5px;
     display: flex;
     flex-direction: row;
     // justify-content: space-between;
@@ -139,6 +138,9 @@ const Row = styled.span`
     margin: 0;
 `;
 const PostCard = styled.div`
+    &:not(:first-child){
+        margin-top: 25px;
+    }
     background-color: ${props => props.theme.text};
     border-radius: 6px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -166,7 +168,7 @@ const PostTitle = styled.h2`
     font-size: 1.3em;
     text-decoration: none;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 `;
 
 const HomePageWrapper = styled.div`

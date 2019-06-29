@@ -20,8 +20,8 @@ const Template = ({ data, pageContext }) => {
                 dangerouslySetInnerHTML={{__html: html}}
             />
             </BlogPostWrapper>
-            {prev && <Link to={prev.frontmatter.path}>Last Post </Link>}
-            {next && <Link to={next.frontmatter.path}>Next Post </Link>}
+            {prev && <ColorLink to={prev.frontmatter.path}>Previous Post </ColorLink>}
+            {next && <ColorLink to={next.frontmatter.path}>Next Post </ColorLink>}
             <ContentFooter/>
         </Container>
     )
@@ -66,13 +66,41 @@ const BlogPost = styled.div`
     a {
         color: ${props => props.theme.brandColor};
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 1rem 0;
+    }
+
     p,
     ol,
     ul,
     a {
         font-size: 1.2rem;
-        line-height: 1.5;
+        line-height: 1.6;
+        margin-top: 1rem;
     }
 
+    pre {
+        background-color: ${props => props.theme.secondaryAccent};
+        border-radius: 10px;
+        padding: 15px 10px 15px 25px;
+        width: auto;
+    
+        margin: 20px 0;
+        code {
+            color: ${props => props.theme.brandColor};
+        }
+    }
 `
+const ColorLink = styled(Link)`
+    color: ${props => props.theme.brandColor};
+    background-color: ${props => props.theme.background};
+    padding: 5px;
+    font-size: 1.7rem;
+`;
 export default Template;
